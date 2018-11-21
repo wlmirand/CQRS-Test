@@ -1,5 +1,8 @@
 package com.dummyapp.dagger.components;
 
+import android.app.Activity;
+
+import com.dummyapp.BaseActivity;
 import com.dummyapp.MainActivity;
 import com.dummyapp.dagger.modules.MainActivityModule;
 
@@ -14,5 +17,5 @@ import dagger.Component;
 @Singleton
 @Component(modules = {MainActivityModule.class})
 public interface IBaseComponent {
-    void inject(MainActivity activity);
+    void inject(BaseActivity activity);
 }
