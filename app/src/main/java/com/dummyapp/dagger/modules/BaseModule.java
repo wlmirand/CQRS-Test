@@ -21,9 +21,23 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
+/***
+ * This class is the base module which holds the generic methods inherited by
+ * the remaining modules. It receives the entity from which the service will
+ * be applied to.
+ * @param <T>
+ */
 @Module
 public abstract class BaseModule<T> {
 
+    /***
+     * Provides the CacheService instance for any type of entity used
+     *
+     * @param repository interface used to perform all the
+     *                   persistence read and write operations
+     * @return CacheService service instance which provides the means to execute the
+     * queries and command processes
+     */
     @Provides
     @Singleton
     public CacheService<T> provideCacheService(IRepository<T> repository) {

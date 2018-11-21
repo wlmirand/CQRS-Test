@@ -27,7 +27,8 @@ public class BaseApplication extends Application {
      * Retrieves the BaseComponent initialized
      * during the application startup
      *
-     * @return baseComponent
+     * @return baseComponent required to enable the module injection in the respective UI
+     * elements
      */
     public IBaseComponent getBaseComponent() {
         return this.baseComponent;

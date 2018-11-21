@@ -33,7 +33,6 @@ public class MainActivity extends BaseActivity {
                 for (Doctor doctor : result) {
                     Log.d("CQRS-App", doctor.getName());
                 }
-
             }
         });
     }
