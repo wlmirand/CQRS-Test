@@ -1,13 +1,16 @@
-package com.dummyapp;
+package com.dummyapp.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.framework.cache.services.CacheService;
 import com.framework.data.repositories.DoctorRepository;
+import com.framework.domain.doctors.Doctor;
 
 import javax.inject.Inject;
 
 public abstract class BaseActivity extends AppCompatActivity {
+
 
     /**
      * Since we might need this on several Activities,
@@ -15,7 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * So Dagger may correctly Inject the dependencies for all Activities
      */
     @Inject
-    public DoctorRepository doctorRepository;
+    public CacheService<Doctor> doctorCacheService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

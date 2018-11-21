@@ -1,9 +1,6 @@
 package com.dummyapp.dagger.components;
 
-import android.app.Activity;
-
-import com.dummyapp.BaseActivity;
-import com.dummyapp.MainActivity;
+import com.dummyapp.activities.BaseActivity;
 import com.dummyapp.dagger.modules.MainActivityModule;
 
 import javax.inject.Singleton;
