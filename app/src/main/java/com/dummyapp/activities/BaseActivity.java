@@ -3,6 +3,7 @@ package com.dummyapp.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.dummyapp.applications.BaseApplication;
 import com.framework.cache.services.CacheService;
 import com.framework.data.repositories.DoctorRepository;
 import com.framework.domain.doctors.Doctor;
@@ -23,5 +24,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((BaseApplication) this.getApplication()).getBaseComponent().inject(this);
     }
 }
