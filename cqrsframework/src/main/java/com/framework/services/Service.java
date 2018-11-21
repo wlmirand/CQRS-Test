@@ -18,11 +18,11 @@ public abstract class Service<T> implements IService<T> {
     /**
      * Outro Handler para Queries??
      */
-    private Map<Class, IQueryHandler<Query, T>> mapQueries;
+    private Map<Class, IQueryHandler<Query<T>, T>> mapQueries;
 
     protected Service(
             Map<Class, ICommandHandler<Command<T>>> mapCommands,
-            Map<Class, IQueryHandler<Query, T>> mapQueries) {
+            Map<Class, IQueryHandler<Query<T>, T>> mapQueries) {
         this.mapCommands = mapCommands;
         this.mapQueries = mapQueries;
     }

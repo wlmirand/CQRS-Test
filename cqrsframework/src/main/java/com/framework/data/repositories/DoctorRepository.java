@@ -2,9 +2,10 @@ package com.framework.data.repositories;
 
 import android.util.Log;
 
-import com.framework.domain.Doctor;
+import com.framework.domain.doctors.Doctor;
 import com.framework.domain.core.filters.Filter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DoctorRepository implements IRepository<Doctor> {
@@ -15,7 +16,10 @@ public class DoctorRepository implements IRepository<Doctor> {
 
     @Override
     public List<Doctor> find(Filter<Doctor> filter) {
-        return null;
+        List<Doctor> result = new ArrayList<>();
+        Doctor doctor = new Doctor();
+        result.add(doctor);
+        return result;
     }
 
 }

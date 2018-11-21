@@ -2,6 +2,7 @@ package com.dummyapp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.dummyapp.dagger.DaggerMyComponent;
@@ -9,14 +10,20 @@ import com.framework.cache.commandhandlers.PushCommandHandler;
 import com.framework.cache.commandhandlers.RemoveCommandHandler;
 import com.framework.cache.commands.PushCommand;
 import com.framework.cache.commands.RemoveCommand;
+import com.framework.cache.queries.GetByFilterQuery;
+import com.framework.cache.queryhandlers.GetByFilterQueryHandler;
 import com.framework.cache.services.CacheService;
 import com.framework.data.repositories.DoctorRepository;
-import com.framework.domain.Doctor;
-import com.framework.domain.patients.Patient;
+import com.framework.domain.doctors.Doctor;
+import com.framework.domain.doctors.DoctorFilter;
+import com.framework.domain.patients.PatientFilter;
 import com.framework.services.Command;
 import com.framework.services.ICommandHandler;
+import com.framework.services.IQueryHandler;
+import com.framework.services.Query;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,16 +43,22 @@ public class MainActivity extends AppCompatActivity {
                 mapaComandos.put(PushCommand.class, new PushCommandHandler<>(doctorRepository));
                 mapaComandos.put(RemoveCommand.class, new RemoveCommandHandler<>(doctorRepository));
 
-                CacheService<Doctor> doctorCacheService = new CacheService<>(mapaComandos, null);
+
+                //Map<Class, IQueryHandler<Query, T>> mapQueries;
+                Map<Class, IQueryHandler<Query<Doctor>, Doctor>> mapaQueries = new HashMap<>();
+                mapaQueries.put(GetByFilterQuery.class, new GetByFilterQueryHandler<>(doctorRepository));
+
+                CacheService<Doctor> doctorCacheService = new CacheService<>(mapaComandos, mapaQueries);
                 PushCommand<Doctor> pushDoctorCommand = new PushCommand<>(new Doctor());
                 doctorCacheService.processCommand(pushDoctorCommand);
 
-                /*
-                PatientFilter filter = new PatientFilter();
-                GetByFilterQuery query = new GetByFilterQuery(filter);
+                DoctorFilter filter = new DoctorFilter();
+                GetByFilterQuery<Doctor> query = new GetByFilterQuery<>(filter);
                 List<Doctor> result = doctorCacheService.processQuery(query);
-                */
 
+                for (Doctor doctor : result) {
+                    Log.d("CQRS-App", doctor.getName());
+                }
 
             }
         });

@@ -16,7 +16,7 @@ public class CacheService<T> extends Service<T> {
 
     public CacheService(
             Map<Class, ICommandHandler<Command<T>>> mapCommands,
-            Map<Class, IQueryHandler<Query, T>> mapQueries) {
+            Map<Class, IQueryHandler<Query<T>, T>> mapQueries) {
         super(mapCommands, mapQueries);
     }
 }
