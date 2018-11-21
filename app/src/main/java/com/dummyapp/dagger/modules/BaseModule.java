@@ -7,8 +7,7 @@ import com.framework.cache.commands.RemoveCommand;
 import com.framework.cache.queries.GetByFilterQuery;
 import com.framework.cache.queryhandlers.GetByFilterQueryHandler;
 import com.framework.cache.services.CacheService;
-import com.framework.data.repositories.DoctorRepository;
-import com.framework.domain.doctors.Doctor;
+import com.framework.data.repositories.IRepository;
 import com.framework.services.Command;
 import com.framework.services.ICommandHandler;
 import com.framework.services.IQueryHandler;
@@ -23,22 +22,17 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class MainActivityModule {
-    @Provides
-    @Singleton
-    public DoctorRepository provideDoctorRepository() {
-        return new DoctorRepository();
-    }
+public abstract class BaseModule<T> {
 
     @Provides
     @Singleton
-    public CacheService<Doctor> provideCacheService(DoctorRepository doctorRepository) {
-        Map<Class, ICommandHandler<Command<Doctor>>> mapCommands = new HashMap<>();
-        mapCommands.put(PushCommand.class, new PushCommandHandler<>(doctorRepository));
-        mapCommands.put(RemoveCommand.class, new RemoveCommandHandler<>(doctorRepository));
+    public CacheService<T> provideCacheService(IRepository<T> repository) {
+        Map<Class, ICommandHandler<Command<T>>> mapCommands = new HashMap<>();
+        mapCommands.put(PushCommand.class, new PushCommandHandler<>(repository));
+        mapCommands.put(RemoveCommand.class, new RemoveCommandHandler<>(repository));
 
-        Map<Class, IQueryHandler<Query<Doctor>, Doctor>> mapQueries = new HashMap<>();
-        mapQueries.put(GetByFilterQuery.class, new GetByFilterQueryHandler<>(doctorRepository));
+        Map<Class, IQueryHandler<Query<T>, T>> mapQueries = new HashMap<>();
+        mapQueries.put(GetByFilterQuery.class, new GetByFilterQueryHandler<>(repository));
 
         return new CacheService<>(mapCommands, mapQueries);
     }

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.dummyapp.applications.BaseApplication;
 import com.framework.cache.services.CacheService;
-import com.framework.data.repositories.DoctorRepository;
 import com.framework.domain.doctors.Doctor;
 
 import javax.inject.Inject;

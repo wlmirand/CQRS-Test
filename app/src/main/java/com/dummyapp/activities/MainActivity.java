@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 
 import com.dummyapp.R;
-import com.dummyapp.applications.BaseApplication;
 import com.framework.cache.commands.PushCommand;
 import com.framework.cache.queries.GetByFilterQuery;
 import com.framework.domain.doctors.Doctor;
