@@ -1,7 +1,6 @@
 package com.dummyapp.dagger;
 
 import com.dummyapp.activities.BaseActivity;
-import com.framework.dagger.modules.DoctorModule;
 
 import javax.inject.Singleton;
 

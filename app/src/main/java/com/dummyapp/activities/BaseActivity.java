@@ -3,6 +3,7 @@ package com.dummyapp.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.dummyapp.applications.BaseApplication;
 import com.dummyapp.dagger.DaggerIBaseComponent;
 import com.framework.cache.services.CacheService;
 import com.framework.domain.doctors.Doctor;
@@ -27,6 +28,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DaggerIBaseComponent.create().inject(this);
+        ((BaseApplication) getApplication()).getBaseComponent().inject(this);
     }
 }

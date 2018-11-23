@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.dummyapp.dagger.DaggerIBaseComponent;
 import com.dummyapp.dagger.IBaseComponent;
-import com.framework.dagger.modules.DoctorModule;
 
 /***
  * This class was created to in order to provide a single point of access to all the components
@@ -19,7 +18,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        baseComponent = DaggerIBaseComponent.builder().build();
+        baseComponent = DaggerIBaseComponent.create();
     }
 
     /***

@@ -1,4 +1,4 @@
-package com.framework.dagger.modules;
+package com.dummyapp.dagger;
 
 import com.framework.cache.commandhandlers.PushCommandHandler;
 import com.framework.cache.commandhandlers.RemoveCommandHandler;
