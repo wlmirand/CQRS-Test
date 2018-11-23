@@ -1,4 +1,4 @@
-package com.dummyapp.dagger.modules;
+package com.framework.dagger.modules;
 
 import com.framework.data.repositories.DoctorRepository;
 import com.framework.data.repositories.IRepository;

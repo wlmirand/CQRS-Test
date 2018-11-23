@@ -1,7 +1,7 @@
-package com.dummyapp.dagger.components;
+package com.dummyapp.dagger;
 
 import com.dummyapp.activities.BaseActivity;
-import com.dummyapp.dagger.modules.DoctorModule;
+import com.framework.dagger.modules.DoctorModule;
 
 import javax.inject.Singleton;
 
