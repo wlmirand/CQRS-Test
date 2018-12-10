@@ -4,32 +4,29 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.dummyapp.R;
+import com.dummyapp.applications.BaseApplication;
+import com.dummyapp.controllers.BaseController;
 
 import javax.inject.Inject;
 
-import three.appbase.turbuplus.astrazeneca.com.turbuplusfwk.appevent.commands.AppEventPushCommand;
-import three.appbase.turbuplus.astrazeneca.com.turbuplusfwk.core.dispatchers.CommandsDispatcher;
+import three.appbase.turbuplus.astrazeneca.com.turbuplusfwk.core.commandhandlers.CommandBus;
+import three.appbase.turbuplus.astrazeneca.com.turbuplusfwk.core.queryhandlers.QueryBus;
+
+/***
+ * This class aims to be the base activity which will be inherited by each activity in the project and
+ * provide the common methods which should be consumed by each of the available activities
+ */
+public abstract class BaseActivity extends AppCompatActivity {
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    CommandsDispatcher commandsDispatcher;
+    public BaseController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Cria um comando a ser enviado para o Dispatcher
-                AppEventPushCommand pushCommand = new AppEventPushCommand();
-
-                //Envia o comando
-                commandsDispatcher.process(pushCommand);
-            }
-        });
+        ((BaseApplication) BaseActivity.this.getApplicationContext()).getInjector().inject(this);
     }
 }

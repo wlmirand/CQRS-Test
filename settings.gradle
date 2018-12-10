@@ -1,1 +1,1 @@
-include ':app', ':cqrsframework'
+include ':app', ':turbu-plus-fwk'
