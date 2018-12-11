@@ -6,10 +6,13 @@ import android.view.View;
 
 import com.dummyapp.applications.BaseApplication;
 import com.dummyapp.controllers.BaseController;
+import com.dummyapp.dagger.ApplicationComponent;
+import com.dummyapp.dagger.DaggerApplicationComponent;
 
 import javax.inject.Inject;
 
 import three.appbase.turbuplus.astrazeneca.com.turbuplusfwk.core.commandhandlers.CommandBus;
+import three.appbase.turbuplus.astrazeneca.com.turbuplusfwk.core.dependencies.dagger.TurbuPlusFwkComponent;
 import three.appbase.turbuplus.astrazeneca.com.turbuplusfwk.core.queryhandlers.QueryBus;
 
 /***
@@ -18,7 +21,7 @@ import three.appbase.turbuplus.astrazeneca.com.turbuplusfwk.core.queryhandlers.Q
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
+    private ApplicationComponent injector;
 
     @Inject
     public BaseController controller;
@@ -26,7 +29,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.injector = DaggerApplicationComponent.create();
+        this.injector.inject(this);
+    }
 
-        ((BaseApplication) BaseActivity.this.getApplicationContext()).getInjector().inject(this);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.injector = null;
     }
 }

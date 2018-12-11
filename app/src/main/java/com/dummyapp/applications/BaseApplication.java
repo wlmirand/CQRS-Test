@@ -15,12 +15,6 @@ import io.realm.RealmConfiguration;
  */
 public class BaseApplication extends Application {
 
-    private ApplicationComponent injector;
-
-    public ApplicationComponent getInjector() {
-        return this.injector;
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -36,9 +30,5 @@ public class BaseApplication extends Application {
         Realm.setDefaultConfiguration(config);
 
         realm.close();
-
-
-        this.injector = DaggerApplicationComponent.create();
-
     }
 }

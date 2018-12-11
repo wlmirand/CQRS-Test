@@ -7,7 +7,7 @@ import dagger.Provides;
 import three.appbase.turbuplus.astrazeneca.com.turbuplusfwk.core.dependencies.dagger.TurbuPlusFwkComponent;
 
 @Module
-public class ApplicationModule {
+public class ControllersModule {
 
     @Provides
     BaseController provideBaseController(TurbuPlusFwkComponent injector) {

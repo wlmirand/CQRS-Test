@@ -1,5 +1,7 @@
 package com.dummyapp.controllers;
 
+import com.dummyapp.dagger.DaggerApplicationComponent;
+
 import java.util.ArrayList;
 
 import javax.inject.Inject;
@@ -20,6 +22,7 @@ public class BaseController {
     public BaseController(TurbuPlusFwkComponent injector) {
         this.commandBus = injector.getCommandBus();
         this.queryBus = injector.getQueryBus();
+
     }
 
     public void coisas() {
