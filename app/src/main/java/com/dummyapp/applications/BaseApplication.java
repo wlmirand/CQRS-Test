@@ -2,9 +2,6 @@ package com.dummyapp.applications;
 
 import android.app.Application;
 
-import com.dummyapp.dagger.ApplicationComponent;
-import com.dummyapp.dagger.DaggerApplicationComponent;
-
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
